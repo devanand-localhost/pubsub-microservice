@@ -49,7 +49,7 @@ kubectl get services
 curl -X POST \
   http://localhost:3000/api/receiver \
   -H 'Content-Type: application/json' \
-  -H 'X-API-Key: your-secret-api-key' \
+  -H 'X-API-Key: secret-api-key' \
   -d '{
     "user": "Harry",
     "class": "Comics",
