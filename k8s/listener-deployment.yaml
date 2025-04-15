@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: listener-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: listener-service
+  template:
+    metadata:
+      labels:
+        app: listener-service
+    spec:
+      containers:
+        - name: listener-service
+          image: listener-service:latest
+          imagePullPolicy: Never
+          env:
+            - name: MONGODB_URI
+              value: mongodb://mongodb:27017/pubsub
+            - name: REDIS_URL
+              value: redis://redis:6379
