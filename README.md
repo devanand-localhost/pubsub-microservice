@@ -17,37 +17,34 @@ This project consists of two main services:
 - Docker
 - Kubernetes
 
-
-
 # Running the Application
-Using Docker Compose
+## Using Docker Compose
 
-## First, make sure you have all the files in place
+### Make sure you have all the files in place
 Build and start all services:
 ```bash
 docker-compose up --build
 ```
-Using Kubernetes
+## Using Kubernetes
 
-1. First, build the Docker images:
+### 1. First, build the Docker images:
 ```bash
 docker build -t receiver-service:latest ./receiver-service
 docker build -t listener-service:latest ./listener-service
 ```
-2. Apply Kubernetes manifests:
+### 2. Apply Kubernetes manifests:
 ```bash
 kubectl apply -f k8s/mongodb-deployment.yaml
 kubectl apply -f k8s/redis-deployment.yaml
 kubectl apply -f k8s/receiver-deployment.yaml
 kubectl apply -f k8s/listener-deployment.yaml
 ```
-3. Check that everything is running:
+### 3. Check that everything is running:
 ```bash
 kubectl get pods
 kubectl get services
 ```
 # Testing the Application
-You can test the application with a simple curl command:
 ```bash
 curl -X POST \
   http://localhost:3000/api/receiver \
@@ -62,7 +59,7 @@ curl -X POST \
 ```
 ## To verify the data was processed:
 
-Check MongoDB collections (if you're running locally):
+Check MongoDB collections:
 ```bash
 # Connect to MongoDB
 docker exec -it pubsub-microservice_mongodb_1 mongo
